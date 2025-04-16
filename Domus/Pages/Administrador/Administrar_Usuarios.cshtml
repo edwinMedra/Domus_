@@ -1,0 +1,265 @@
+﻿@page
+@model Domus.Pages.Administrador.Administrar_UsuariosModel
+@using Microsoft.Data.SqlClient;
+@using System.Data
+@{
+}
+
+
+@{
+
+	Layout = "_Layout_Domus";
+
+}
+
+
+<div class="row">
+
+
+
+	<div class="col-xl-12">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title">Administrador De Usuarios</h4>
+
+
+
+			</div>
+			<div class="card-body">
+				<div class="table-responsive">
+					<table id="example3" class="display" style="min-width: 845px">
+						<thead>
+							<tr>
+								<th></th>
+								<th>Usuario</th>
+								<th>Nombre 1</th>
+								<th>Apellido 1</th>
+								<th>Fecha de nacimiento</th>
+								<th>Correo</th>
+								<th>Estado</th>
+								<th></th>
+
+
+							</tr>
+						</thead>
+						<tbody>
+
+
+							@foreach (DataRow FilaUsuarios in Model.datatable_Usuario.Rows)
+
+							{
+
+								<tr>
+
+									<td></td>
+									<td>@FilaUsuarios["usuario"].ToString()</td>
+									<td>@FilaUsuarios["nombre1"].ToString()</td>
+									<td>@FilaUsuarios["apellido1"].ToString()</td>
+									<td>@FilaUsuarios["fecha_nacimiento"].ToString()</td>
+									<td>@FilaUsuarios["Correo"].ToString()</td>
+									<td>@FilaUsuarios["estado"].ToString()</td>
+
+
+									<td>
+										<div class="d-flex">
+											<a asp-page="Administrar_Usuarios" asp-route-id_Usuario="@FilaUsuarios["id_Usuario"].ToString()" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+										</div>
+									</td>
+								</tr>
+
+							}
+
+
+
+
+
+
+
+
+
+
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<div class="col-xl-12">
+
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Administrar Chalet</font></font></h4>
+			</div>
+			<div class="card-body">
+				<div class="basic-form">
+					<form method="post">
+						<div class="row">
+
+							@* <input type="text" class="form-control" placeholder="" hidden asp-for="input_idSubcategoria" /> <!-- envia la imofromacion que esta dentro del formulario--> *@
+
+
+							<div class="mb-3 col-md-6">
+								<label class="form-label"><font style="vertical-align: inherit;"></font></label>
+								<input type="text" class="form-control" placeholder="Usuario" asp-for="input_Usuario">
+							</div>
+
+							<div class="mb-3 col-md-6">
+								<label class="form-label"><font style="vertical-align: inherit;"></font></label>
+								<input type="text" class="form-control" placeholder="Nombre 1" asp-for="input_Nombre1">
+							</div>
+
+							<div class="mb-3 col-md-6">
+								<label class="form-label"><font style="vertical-align: inherit;"></font></label>
+								<input type="text" class="form-control" placeholder="Nombre 2" asp-for="input_Nombre2">
+							</div>
+
+							<div class="mb-3 col-md-6">
+								<label class="form-label"><font style="vertical-align: inherit;"></font></label>
+								<input type="text" class="form-control" placeholder="Apellido 1" asp-for="input_Apellido1">
+							</div>
+
+							<div class="mb-3 col-md-6">
+								<label class="form-label"><font style="vertical-align: inherit;"></font></label>
+								<input type="text" class="form-control" placeholder="Apellido 2" asp-for="input_Apellido2">
+							</div>
+
+							<div class="mb-3 col-md-6">
+								<label class="form-label"><font style="vertical-align: inherit;"></font></label>
+								<input type="date" class="form-control" asp-for="input_FechaNacimiento">
+							</div>
+
+							<div class="mb-3 col-md-6">
+								<label class="form-label"><font style="vertical-align: inherit;"></font></label>
+								<input type="email" class="form-control" placeholder="Correo" asp-for="input_Correo">
+							</div>
+
+							
+
+							<div class="mb-3 col-md-6">
+								<select class="default-select wide form-control ms-0" id="validationCustom05" asp-for="inpu_Estado_Usuario">
+									<option value="Activo">Activo</option>
+									<option value="Inactivo">Inactivo</option>
+								</select>
+							</div>
+
+							@* <div class="mb-3 col-md-6">
+								<label class="form-label"><font style="vertical-align: inherit;"></font></label>
+								<input type="text" class="form-control" placeholder="Rol Estudiante" asp-for="input_RolEstudiante">
+							</div>
+
+							<div class="mb-3 col-md-6">
+								<label class="form-label"><font style="vertical-align: inherit;"></font></label>
+								<input type="text" class="form-control" placeholder="Rol Super Admin" asp-for="input_RolSuperAdmin">
+							</div>
+
+							<div class="mb-3 col-md-6">
+								<label class="form-label"><font style="vertical-align: inherit;"></font></label>
+								<input type="text" class="form-control" placeholder="Rol Admin Chalet" asp-for="input_RolAdminChalet">
+							</div> *@
+
+
+							<div class="mb-3 col-md-6">
+
+								<div class="form-check custom-checkbox mb-3">
+									<input type="checkbox" class="form-check-input"   asp-for="input_RolEstudiante">
+									<label class="form-check-label" for="customCheckBox1">Rol estudiante</label>
+								</div>
+
+							</div>
+
+							<div class="mb-3 col-md-6">
+
+								<div class="form-check custom-checkbox mb-3">
+									<input type="checkbox" class="form-check-input"   asp-for="input_RolSuperAdmin">
+									<label class="form-check-label" for="customCheckBox1">Rol super admin</label>
+								</div>
+
+							</div>
+
+							<div class="mb-3 col-md-6">
+
+								<div class="form-check custom-checkbox mb-3">
+									<input type="checkbox" class="form-check-input" id="CheckRolChalet"  asp-for="input_RolAdminChalet">
+									<label class="form-check-label" for="customCheckBox1">Rol admind chalet</label>
+								</div>
+
+								<div id="SelectChalet">
+
+									<select class="default-select form-control wide form-control-sm ms-0" id="OpcionChalet" asp-for="inputidChalet">
+
+										<option value="0">Chalet no asignado</option>
+										@foreach (DataRow FilaUsuarios in Model.datatable_Chalet.Rows)
+
+										{
+											<option value="@FilaUsuarios["id_chalet"].ToString()">@FilaUsuarios["nombre_chalet"].ToString()</option>
+											
+										
+										}
+										
+									</select>
+
+								</div>
+
+								
+
+								
+
+
+							</div>
+
+							<div class="mb-3 col-md-6">
+								<label class="form-label"><font style="vertical-align: inherit;"></font></label>
+								<input type="text" class="form-control" placeholder="Boscoins" asp-for="input_Boscoins">
+							</div>
+
+
+
+							<input type="submit" class="btn btn-primary" style="text-align:center;" value="Guardar Usuario" asp-route-idUsuario="@Model.id_Usuario" asp-page-handler="Guardar_Usuarios">
+
+
+
+						</div>
+
+
+
+
+
+
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+
+</div>
+
+
+<script>
+			document.addEventListener('DOMContentLoaded', () => {
+		const checkbox = document.getElementById('CheckRolChalet');
+		const control = document.getElementById('OpcionChalet').parentElement; // Asegúrate de seleccionar el contenedor
+
+		// Función para controlar la visibilidad
+		const updateVisibility = () => {
+			control.style.display = checkbox.checked ? 'block' : 'none';
+		};
+
+		// Ejecutar la función al cargar la página
+		updateVisibility();
+
+		// Escuchar el cambio del checkbox
+		checkbox.addEventListener('change', updateVisibility);
+	});
+
+
+</script>
+
+
